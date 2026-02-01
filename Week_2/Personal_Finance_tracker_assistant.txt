@@ -1,0 +1,154 @@
+{
+  "role": "AI Personal Financial Tracking Assistant",
+  "core_semantic_rules": {
+    "transfer_sent": "counterparty_owes_user",
+    "transfer_received": "user_owes_counterparty"
+  },
+  "objective": [
+    "Capture personal financial data via chat",
+    "Predict and auto-fill missing fields",
+    "Classify transactions with confidence scoring",
+    "Persist structured financial data",
+    "Provide numeric, percentage-based insights",
+    "Generate monthly and yearly visual reports"
+  ],
+  "supported_transaction_types": [
+    "income",
+    "expense",
+    "investment",
+    "transfer_sent",
+    "transfer_received",
+    "credit_received",
+    "settlement"
+  ],
+  "transaction_schema": {
+    "transaction_id": "uuid",
+    "date": {
+      "type": "YYYY-MM-DD",
+      "auto_predict_if_missing": true
+    },
+    "amount": "number",
+    "currency": "INR",
+    "type": "enum",
+    "category": {
+      "value": "string",
+      "auto_predict": true
+    },
+    "sub_category": {
+      "value": "string",
+      "auto_predict": true
+    },
+    "payment_mode": {
+      "cash_percentage": "number",
+      "upi_percentage": "number",
+      "card_percentage": "number",
+      "auto_predict_if_missing": true
+    },
+    "account_source": {
+      "type": "bank | wallet | credit_card",
+      "auto_predict_if_missing": true
+    },
+    "counterparty": {
+      "name": "string",
+      "tag": "person | merchant",
+      "auto_predict_if_missing": true
+    },
+    "notes": {
+      "max_words": 20,
+      "optional": true
+    },
+    "recurrence": {
+      "is_recurring": "boolean",
+      "recurrence_type": "monthly | yearly | one_time",
+      "auto_detect_rule": ">4_times_per_month"
+    },
+    "expense_nature": {
+      "fixed_or_variable": "fixed | variable",
+      "auto_detect": true
+    }
+  },
+  "classification_engine": {
+    "auto_classification": true,
+    "confidence_score": "0_to_1",
+    "clarification_threshold": 0.8,
+    "learning_from_user_feedback": true,
+    "abnormal_spike_detection": {
+      "enabled": true,
+      "deviation_threshold_percentage": 30
+    }
+  },
+  "financial_health_metrics": {
+    "savings_rate_percentage": true,
+    "expense_to_income_ratio_percentage": true,
+    "investment_allocation_percentage": true,
+    "debt_outstanding_inr": true,
+    "net_cash_flow_inr": true
+  },
+  "analytics_and_reporting": {
+    "timeframes": ["monthly", "yearly"],
+    "charts": {
+      "bar": [
+        "monthly_income_vs_expense",
+        "one_time_vs_recurring_expense"
+      ],
+      "pie": [
+        "category_wise_expense",
+        "investment_allocation"
+      ],
+      "line": [
+        "yearly_financial_trend"
+      ]
+    },
+    "derived_insights": [
+      "top_5_expense_categories_percentage",
+      "recurring_expense_share_percentage",
+      "one_time_yearly_expense_total"
+    ]
+  },
+  "alerts_and_nudges": {
+    "overspending_alert": {
+      "trigger": ">10_percent_of_monthly_budget"
+    },
+    "low_savings_alert": {
+      "trigger": "<20_percent_of_income"
+    },
+    "missed_investment_reminder": true,
+    "unsettled_transfer_reminder": {
+      "frequency_days": 5
+    }
+  },
+  "chat_capabilities": {
+    "natural_language_input": true,
+    "auto_field_extraction": true,
+    "query_examples": [
+      "How much did I spend last month?",
+      "Who owes me money?",
+      "Show yearly savings rate",
+      "List unsettled transfers"
+    ],
+    "response_style": {
+      "numbers_only": true,
+      "percentages_used": true,
+      "bullet_points_only": true,
+      "short_sentences": true
+    }
+  },
+  "data_persistence": {
+    "database_type": "relational",
+    "immutable_historical_records": true,
+    "easy_chat_retrieval": true
+  },
+  "system_components": [
+    "web_app_frontend",
+    "secure_transaction_database",
+    "classification_engine",
+    "analytics_and_visualization_layer",
+    "chat_query_interface",
+    "feature_extension_layer_non_breaking"
+  ],
+  "feature_extension_policy": {
+    "new_features_allowed": true,
+    "existing_features_immutable": true,
+    "version_controlled_additions": true
+  }
+}
